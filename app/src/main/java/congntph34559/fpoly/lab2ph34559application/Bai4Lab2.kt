@@ -20,18 +20,48 @@ fun themSinhVien() {
     var diemTb: Float = 0f
     var daTn: Boolean? = null
     var tuoi: Int? = 0
+    var s: String?
 
-    print("Mời nhập tên: ")
-    var s: String? = readLine()
-    if (s != null) tenSv = s;
+    while (true) {
+        print("Mời nhập tên: ")
+        s = readLine()
+        if (s != null && s.toString() != "") {
+            tenSv = s.toString()
+            break
+        } else {
+            println("Tên không hợp lên mời nhập lại !")
+        }
 
-    print("Mời nhập mã: ")
-    s = readLine()
-    if (s != null) maSv = s
+    }
 
-    print("Mời nhập điểm: ")
-    s = readLine()
-    if (s != null) diemTb = s.toFloat()
+    while (true) {
+        print("Mời nhập mã: ")
+        var s = readLine()
+        if (s != null && s.toString() != "") {
+            maSv = s.toString()
+            break
+        } else {
+            println("Mã không hợp lên mời nhập lại !")
+
+        }
+
+    }
+
+
+    while (true) {
+        try {
+            print("Mời nhập điểm: ")
+            var s = readLine()
+            if (s != null && s.toInt() > 0) {
+                diemTb = s.toFloat()
+                break
+            }
+
+        } catch (e: NumberFormatException) {
+            println("Điểm phải là số !")
+        }
+
+    }
 
     print("Mời nhập trạng thái tốt nghiệp(r/c): ")
     s = readlnOrNull()
@@ -54,11 +84,11 @@ fun themSinhVien() {
     s = readlnOrNull()
     tuoi = if (s != null && s.toIntOrNull() != null) s.toInt() else 0
 
-    if ( tuoi == 0 && daTn == false){
+    if (tuoi == 0 && daTn == false) {
         val sv: SinhVienDTO = SinhVienDTO(tenSv, maSv, diemTb)
         listSv.add(sv)
-    }else{
-        val sv: SinhVienDTO = SinhVienDTO(tenSv, maSv, diemTb,daTn,tuoi)
+    } else {
+        val sv: SinhVienDTO = SinhVienDTO(tenSv, maSv, diemTb, daTn, tuoi)
         listSv.add(sv)
     }
 
